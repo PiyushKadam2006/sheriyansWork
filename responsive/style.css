@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding:0 ;
+}
+
+html, body{
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: yellow;
+}
+main{
+    height: 50%;
+    width: 50%;
+    background-color: red;
+}
+
+@media (max-width:1000px){
+    main{
+        background-color: green;
+    }
+}
