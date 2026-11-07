@@ -29,3 +29,12 @@ form.addEventListener("submit",(event)=>{
     console.dir(form[5].value);
     console.dir(form[6].value);
 })
+
+//revision 
+/**
+ * The browser sends the data and loads a new page, which is why JavaScript form handlers start with preventDefault.
+ * preventDefault cancels the browser's default action, which for a form is sending the data and reloading.
+ * A form can be submitted by pressing Enter inside an input, which a click listener on the button would miss.
+ * Input values are always strings. Convert with Number() before doing arithmetic.
+ * 
+ */
