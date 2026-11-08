@@ -18,7 +18,7 @@ html , body{
 main{
     height: 60%;
     width: 70%;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.358);
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -29,10 +29,10 @@ main{
     height: 30%;
     width:25% ;
     background-color: red;
+    display: flex;
+    align-items: center;
     /* text-align: center; */
     /* align-items: center; */
-     display: flex;
-    align-items: center;
     /* justify-content: space-; */
 }
 
@@ -44,4 +44,10 @@ background-color: green;
 }
 #b3{
 background-color: blue;
+}
+/* bubble  */
+.bubble{
+    height: 50%;
+    /* width: 50%; */
+    background-color: aqua;
 }
