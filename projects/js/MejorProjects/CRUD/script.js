@@ -5,10 +5,14 @@ let cardcontainer = document.querySelector(".card-container");
 
 formDiv.style.display = "none";
 let cardArr = [];
+
 let form = document.querySelector("form");
 
-let indexOfCurrentUpdate ;
-let cardForUpdate = false
+let indexOfCurrentUpdate;
+let cardForUpdate = false;
+
+// localStorage.getItem(JSON.parse(cardArr));
+cardArr = JSON.parse(localStorage.getItem("cardArr")) || [];
 
 let renderUI = () => {
   cardcontainer.innerHTML = ""; ///this line is very important to prevent duplication of array cars
@@ -36,21 +40,22 @@ let renderUI = () => {
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  let name = form[0].value;   //create+read 
+  let name = form[0].value; //create+read
   let email = form[1].value;
   let url = form[2].value;
 
   let userObj = { name, email, url };
 
-
-  if(cardForUpdate){
-      cardArr[indexOfCurrentUpdate]= userObj;
-      cardForUpdate = false;
-      cardForUpdate= null;
-  }else{
-      cardArr.push(userObj);
-      console.log(cardArr);
+  if (cardForUpdate) {
+    cardArr[indexOfCurrentUpdate] = userObj;
+    cardForUpdate = false;
+    cardForUpdate = null;
+  } else {
+    cardArr.push(userObj);
+    console.log(cardArr);
   }
+
+  localStorage.setItem("cardArr", JSON.stringify(cardArr));
   renderUI();
 
   form.reset();
@@ -63,24 +68,25 @@ creatbtn.addEventListener("click", () => {
 });
 
 closebtn.addEventListener("click", () => {
-    form.reset()
+  form.reset();
   formDiv.style.display = "none";
 });
 
+let deleteCard = (index) => {
+  cardArr.splice(index, 1);
+  localStorage.setItem("cardArr", JSON.stringify(cardArr));
+  renderUI();
+};
 
-let deleteCard = (index)=>{
-    cardArr.splice(index,1);
-    renderUI();
-}
+let updateCard = (index) => {
+  indexOfCurrentUpdate = index;
+  cardForUpdate = true;
+  let userForUpdate = cardArr[index];
+  formDiv.style.display = "flex";
 
-let updateCard = (index)=>{
-    indexOfCurrentUpdate = index;
-    cardForUpdate = true;
-    let userForUpdate = cardArr[index];
-    formDiv.style.display="flex";
+  form[0].value = userForUpdate.name;
+  form[1].value = userForUpdate.email;
+  form[2].value = userForUpdate.url;
+};
 
-    form[0].value = userForUpdate.name;
-    form[1].value = userForUpdate.email;
-    form[2].value = userForUpdate.url;
-
-}
+renderUI();
